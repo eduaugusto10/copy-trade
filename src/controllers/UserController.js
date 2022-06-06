@@ -18,7 +18,7 @@ module.exports = {
       req.body.name,
       req.body.email,
       req.body.password,
-      req.body.account_number
+      req.body.accountNumber
     );
     res.json(user);
   },

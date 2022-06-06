@@ -17,10 +17,10 @@ module.exports = {
       req.body.ticket,
       req.body.symbol,
       req.body.price,
-      req.body.take_profit,
-      req.body.stop_loss,
-      req.body.operation_type,
-      req.body.type_order
+      req.body.takeProfit,
+      req.body.stopLoss,
+      req.body.operationType,
+      req.body.typeOrder
     );
     res.json(orders);
   },

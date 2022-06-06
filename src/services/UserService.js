@@ -34,12 +34,12 @@ module.exports = {
     });
   },
 
-  registerUser: (name, email, password, account_number) => {
+  registerUser: (name, email, password, accountNumber) => {
     return new Promise((accept, reject) => {
       const hash = bcrypt.hashSync(password, 10);
       db.query(
-        `INSERT INTO users (name, email, password, account_number) VALUES (?, ?, ?, ?)`,
-        [name, email, hash, account_number],
+        `INSERT INTO users (name, email, password, accountNumber) VALUES (?, ?, ?, ?)`,
+        [name, email, hash, accountNumber],
         (error, results) => {
           if (error) {
             reject(error);
