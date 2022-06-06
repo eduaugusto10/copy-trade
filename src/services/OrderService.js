@@ -38,7 +38,7 @@ module.exports = {
     takeProfit,
     stopLoss,
     operationType,
-    typeOrder
+    orderType
   ) => {
     return new Promise((accept, reject) => [
       db.query(
@@ -50,7 +50,7 @@ module.exports = {
           takeProfit,
           stopLoss,
           operationType,
-          typeOrder,
+          orderType,
         ], (error, results) =>{
           if(error){
             reject(error)
