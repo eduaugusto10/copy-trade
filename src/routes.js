@@ -9,6 +9,7 @@ router.get("/user", UserController.getAllUsers);
 router.get("/user/:account", UserController.getUser);
 router.post("/user", UserController.registerUser);
 router.post("/session", UserController.sessionUser);
+router.put("/user/:account", UserController.updateUser);
 
 //ORDER
 router.get("/order", OrderController.getAllOrders);

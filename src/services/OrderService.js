@@ -3,7 +3,7 @@ const db = require("../db");
 module.exports = {
   getAllOrders: () => {
     return new Promise((accept, reject) => {
-      db.query("SELECT * FROM orders order by ordersId asc limit 1 ", (error, results) => {
+      db.query("SELECT * FROM orders order by ordersId desc limit 1 ", (error, results) => {
         if (error) {
           reject(error);
           return;
@@ -42,7 +42,7 @@ module.exports = {
   ) => {
     return new Promise((accept, reject) => [
       db.query(
-        `INSERT INTO orders (ticket, symbol, price, takeProfit, stopLoss, operationType, typeOrder) values (?,?,?,?,?,?,?)`,
+        `INSERT INTO orders (ticket, symbol, price, takeProfit, stopLoss, operationType, orderType) values (?,?,?,?,?,?,?)`,
         [
           ticket,
           symbol,

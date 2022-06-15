@@ -17,7 +17,7 @@ module.exports = {
   getUser: (account) => {
     return new Promise((accept, reject) => {
       db.query(
-        `SELECT * FROM users WHERE account_number = ?`,
+        `SELECT * FROM users WHERE accountNumber = ?`,
         [account],
         (error, results) => {
           if (error) {
@@ -34,12 +34,12 @@ module.exports = {
     });
   },
 
-  registerUser: (name, email, password, accountNumber) => {
+  registerUser: (name, email, password, accountNumber,lote, validate) => {
     return new Promise((accept, reject) => {
       const hash = bcrypt.hashSync(password, 10);
       db.query(
-        `INSERT INTO users (name, email, password, accountNumber) VALUES (?, ?, ?, ?)`,
-        [name, email, hash, accountNumber],
+        `INSERT INTO users (name, email, password, accountNumber,lote, validate) VALUES (?, ?, ?, ?, ?, ?)`,
+        [name, email, hash, accountNumber,lote, validate],
         (error, results) => {
           if (error) {
             reject(error);
@@ -66,6 +66,21 @@ module.exports = {
           } else {
             accept("Senha inválido")
           }
+        }
+      );
+    });
+  },
+  updateUser: (name, email, accountNumber,lote, validate) => {
+    return new Promise((accept, reject) => {
+      db.query(
+        `UPDATE users SET name = ?, email = ?, accountNumber = ?, lote = ?, validate = ? WHERE  accountNumber = ?`,
+        [name, email, accountNumber, validate, lote, accountNumber],
+        (error, results) => {
+          if (error) {
+            reject(error);
+            return;
+          }
+          accept(results);
         }
       );
     });
