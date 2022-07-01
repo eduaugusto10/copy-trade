@@ -1,4 +1,5 @@
 const UserService = require("../services/UserService");
+const jwt = require("jsonwebtoken");
 
 module.exports = {
   getAllUsers: async (req, res) => {
@@ -18,8 +19,8 @@ module.exports = {
       req.body.email,
       req.body.password,
       req.body.accountNumber,
+      req.body.lote,
       req.body.validate,
-      req.body.lote
     );
     res.json(user);
   },

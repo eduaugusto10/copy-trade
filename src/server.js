@@ -2,6 +2,7 @@ require("dotenv").config({ path: ".env" });
 
 const express = require("express");
 const cors = require("cors");
+
 const bodyParser = require("body-parser");
 
 const routes = require("./routes");
@@ -13,7 +14,7 @@ server.use(
     extended: false,
   })
 );
-server.use(bodyParser.json())
+server.use(bodyParser.json());
 
 server.use("/api", routes);
 

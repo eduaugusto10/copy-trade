@@ -64,7 +64,7 @@ module.exports = {
           if (bcrypt.compareSync(password, results[0].password)) {
             accept(results);
           } else {
-            accept("Senha inválido")
+            accept("Senha inválida")
           }
         }
       );

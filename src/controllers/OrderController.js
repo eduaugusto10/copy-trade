@@ -20,7 +20,8 @@ module.exports = {
       req.body.takeProfit,
       req.body.stopLoss,
       req.body.operationType,
-      req.body.orderType
+      req.body.orderType,
+      req.body.percentage
     );
     res.json(orders);
   },
