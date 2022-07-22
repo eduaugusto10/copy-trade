@@ -3,7 +3,7 @@ const db = require("../db");
 module.exports = {
   getAllOrders: () => {
     return new Promise((accept, reject) => {
-      db.query("SELECT * FROM orders order by ordersId desc limit 1 ", (error, results) => {
+      db.query("SELECT * from orders where time_update >= SUBTIME(current_timestamp, '00:00:03') order by ordersId asc;", (error, results) => {
         if (error) {
           reject(error);
           return;

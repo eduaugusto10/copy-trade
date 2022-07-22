@@ -3,8 +3,13 @@ const jwt = require("jsonwebtoken");
 
 module.exports = {
   getAllUsers: async (req, res) => {
-    const users = await UserService.getAllUsers();
-    res.json(users);
+    try{
+      const users = await UserService.getAllUsers();
+      res.json(users);
+    }catch(error){
+      console.log(error)
+      res.status(500).send("Usuário não encontrado")
+    }
   },
 
   getUser: async (req, res) => {
@@ -38,7 +43,16 @@ module.exports = {
       req.body.email,
       req.body.accountNumber,
       req.body.validate,
-      req.body.lote
+      req.body.lote,
+      req.params.account
+    );
+    res.json(user);
+  },
+  updateUserJava: async (req, res) => {
+    const user = await UserService.updateUserJava(
+      req.body.balanceDay,
+      req.body.orderStatus,
+      req.params.account
     );
     res.json(user);
   },

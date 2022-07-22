@@ -33,7 +33,6 @@ module.exports = {
       );
     });
   },
-
   registerUser: (name, email, password, accountNumber,lote, validate) => {
     return new Promise((accept, reject) => {
       const hash = bcrypt.hashSync(password, 10);
@@ -70,11 +69,18 @@ module.exports = {
       );
     });
   },
-  updateUser: (name, email, accountNumber,lote, validate) => {
+    /*
+  req.body.name,
+  req.body.email,
+  req.body.password,
+  req.body.accountNumber,
+  req.body.lote,
+  req.body.validate,*/
+  updateUser: (name, email, accountNumber,lote, validate, accountNumbers) => {
     return new Promise((accept, reject) => {
       db.query(
         `UPDATE users SET name = ?, email = ?, accountNumber = ?, lote = ?, validate = ? WHERE  accountNumber = ?`,
-        [name, email, accountNumber, validate, lote, accountNumber],
+        [name, email, accountNumber, lote, validate, accountNumbers],
         (error, results) => {
           if (error) {
             reject(error);
@@ -85,4 +91,19 @@ module.exports = {
       );
     });
   },
+  updateUserJava: (balanceDay, orderStatus, accountNumber) => {
+    return new Promise((accept, reject) => {
+      db.query(
+        `UPDATE users SET balanceDay = ?, orderStatus = ? WHERE  accountNumber = ?`,
+        [balanceDay, orderStatus, accountNumber],
+        (error, results) => {
+          if (error) {
+            reject(error);
+            return;
+          }
+          accept(results);
+        }
+      );
+    });
+  }
 };
