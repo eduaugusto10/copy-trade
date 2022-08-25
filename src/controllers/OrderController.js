@@ -33,7 +33,8 @@ module.exports = {
         req.body.stopLoss,
         req.body.operationType,
         req.body.orderType,
-        req.body.percentage
+        req.body.percentage,
+        req.body.status_order
       );
       res.json(orders);
     }catch(error){

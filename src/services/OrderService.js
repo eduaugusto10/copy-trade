@@ -39,11 +39,12 @@ module.exports = {
     stopLoss,
     operationType,
     orderType,
-    percentage
+    percentage,
+    statusOrder
   ) => {
     return new Promise((accept, reject) => [
       db.query(
-        `INSERT INTO orders (ticket, symbol, price, takeProfit, stopLoss, operationType, orderType, percentage) values (?,?,?,?,?,?,?,?)`,
+        `INSERT INTO orders (ticket, symbol, price, takeProfit, stopLoss, operationType, orderType, percentage, status_order) values (?,?,?,?,?,?,?,?,?)`,
         [
           ticket,
           symbol,
@@ -52,7 +53,8 @@ module.exports = {
           stopLoss,
           operationType,
           orderType,
-          percentage
+          percentage,
+          statusOrder
         ], (error, results) =>{
           if(error){
             reject(error)
