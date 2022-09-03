@@ -10,7 +10,7 @@ router.get("/user/:account", UserController.getUser);
 router.post("/user", UserController.registerUser);
 router.post("/session", UserController.sessionUser);
 router.put("/user/:account", UserController.updateUser);
-router.put("/customer/:account", UserController.updateUserJava);
+router.delete("/user/:account", UserController.deleteUser);
 
 //ORDER
 router.get("/order", OrderController.getAllOrders);

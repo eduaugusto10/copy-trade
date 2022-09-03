@@ -33,12 +33,12 @@ module.exports = {
       );
     });
   },
-  registerUser: (name, email, password, accountNumber,lote, validate) => {
+  registerUser: (name, email, password, accountNumber, lote, validate) => {
     return new Promise((accept, reject) => {
       const hash = bcrypt.hashSync(password, 10);
       db.query(
         `INSERT INTO users (name, email, password, accountNumber,lote, validate) VALUES (?, ?, ?, ?, ?, ?)`,
-        [name, email, hash, accountNumber,lote, validate],
+        [name, email, hash, accountNumber, lote, validate],
         (error, results) => {
           if (error) {
             reject(error);
@@ -69,13 +69,13 @@ module.exports = {
       );
     });
   },
-    /*
-  req.body.name,
-  req.body.email,
-  req.body.password,
-  req.body.accountNumber,
-  req.body.lote,
-  req.body.validate,*/
+  /*
+req.body.name,
+req.body.email,
+req.body.password,
+req.body.accountNumber,
+req.body.lote,
+req.body.validate,*/
   updateUser: (name, email, accountNumber, validate, lote, accountNumbers) => {
     return new Promise((accept, reject) => {
       db.query(
@@ -91,4 +91,18 @@ module.exports = {
       );
     });
   },
+  deleteUser: (account) => {
+    return new Promise((accept, reject) => {
+      db.query(
+        `DELETE FROM users WHERE accountNumber = ?;`, [account],
+        (error, results) => {
+          if (error) {
+            reject(error)
+            return;
+          }
+          accept(results)
+        }
+      )
+    })
+  }
 };

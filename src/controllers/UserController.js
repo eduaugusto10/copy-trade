@@ -48,4 +48,14 @@ module.exports = {
     );
     res.json(user);
   },
+  deleteUser: async (req, res) => {
+    try {
+      const account = req.params.account;
+      const user = await UserService.deleteUser(account);
+      res.status(200).send("Usuário deletado com sucesso");
+    } catch (error) {
+      console.log(error)
+      res.status(500).send("Usuário não deletado")
+    }
+  }
 };
