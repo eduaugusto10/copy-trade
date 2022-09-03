@@ -48,12 +48,4 @@ module.exports = {
     );
     res.json(user);
   },
-  updateUserJava: async (req, res) => {
-    const user = await UserService.updateUserJava(
-      req.body.balanceDay,
-      req.body.orderStatus,
-      req.params.account
-    );
-    res.json(user);
-  },
 };

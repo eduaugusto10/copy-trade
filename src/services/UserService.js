@@ -76,7 +76,7 @@ module.exports = {
   req.body.accountNumber,
   req.body.lote,
   req.body.validate,*/
-  updateUser: (name, email, accountNumber,lote, validate, accountNumbers) => {
+  updateUser: (name, email, accountNumber, validate, lote, accountNumbers) => {
     return new Promise((accept, reject) => {
       db.query(
         `UPDATE users SET name = ?, email = ?, accountNumber = ?, lote = ?, validate = ? WHERE  accountNumber = ?`,
@@ -91,19 +91,4 @@ module.exports = {
       );
     });
   },
-  updateUserJava: (balanceDay, orderStatus, accountNumber) => {
-    return new Promise((accept, reject) => {
-      db.query(
-        `UPDATE users SET balanceDay = ?, orderStatus = ? WHERE  accountNumber = ?`,
-        [balanceDay, orderStatus, accountNumber],
-        (error, results) => {
-          if (error) {
-            reject(error);
-            return;
-          }
-          accept(results);
-        }
-      );
-    });
-  }
 };
